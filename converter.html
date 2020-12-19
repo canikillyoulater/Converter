@@ -1,0 +1,57 @@
+<!-- Binary To Decimal and Back -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Converter</title>
+	<h2>Binary To Decimal And Back</h2>
+</head>
+<body>
+  <script type="text/javascript">
+    function binToDec(){
+        var p = document.getElementById("output");
+        var number = document.getElementById("input").value;
+        var rev = number.toString().split("").reverse().join("");
+        var digit = 0;
+        var counter = 0;
+        while (counter < rev.length){
+            if (rev[counter]>1){
+                p.innerHTML = "Invalid number as input number contains a digit other than 0 or 1.";
+                return;
+            }
+            else if (rev[counter]==1){
+            digit += 2**counter;
+            }
+            counter = counter+1;
+        }
+        p.innerHTML = digit;
+    }
+    function decToBin(){
+        var p = document.getElementById("output");
+        var number = document.getElementById("input").value;
+        if (number<1){
+            p.innerHTML = "Invalid number. Try a number bigger than 0.";
+            return;
+        }
+        var rev = "";
+        while (number>=1){
+            if (number%2==1){
+                rev += "1";
+                number -= 1;
+            }
+            else{
+                rev += "0";
+            }
+            number = number/2;
+        }
+        p.innerHTML = parseInt(rev.split("").reverse().join(""));
+    }
+  </script>
+
+  p>Enter a number and choose which conversion you would like to perform.</p>
+  <input type="number" id="input" required></input><br>
+  <button onclick="binToDec()">Bin To Dec</button>
+  <button onclick="decToBin()">Dec To Bin</button>
+  <p id="output"></p>
+</body>
+</html>
